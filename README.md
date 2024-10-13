@@ -99,15 +99,5 @@ This project demonstrates the resilience of long-term retail sales trends, even 
 
 For a detailed breakdown of the analysis, refer to the [R Markdown file](`sales_forecasting_analysis_fpp2.Rmd`), which contains the full code, explanations, and insights into the models used.
 
-## Visualizations
-- **Seasonal Plot**: Shows recurring seasonal trends in retail sales.
-  ![Seasonal Plot](link-to-image)
-  
-- **ARIMA Forecast Plot**: Displays the forecasted vs. actual retail sales, highlighting the post-pandemic recovery.
-  ![ARIMA Forecast Plot](link-to-image)
-
-- **Residual Diagnostics**: Shows how well the ARIMA model fits the data through residuals analysis.
-  ![Residuals Check](link-to-image)
-
 
 
