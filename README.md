@@ -69,7 +69,8 @@ The ARIMA(1,1,0)(1,1,2)[12] model demonstrates the best fit, with the lowest RMS
 ### 24-Month Ahead Forecast
 Using the ARIMA model, a 24-month ahead forecast was generated to predict retail sales into 2026. This projection assumes that the underlying patterns (trends, seasonality, and autocorrelation) observed in the past will continue into the future. While the model captures historical patterns effectively, it’s important to note that future economic conditions, such as policy changes or unexpected events, may affect the actual outcomes.
 
-Despite these uncertainties, the ARIMA model's ability to capture complex patterns in the data provides a reasonable basis for future forecasts. Below is the graph showing the 24-month forecast:
+Despite these uncertainties, the ARIMA model's ability to capture complex patterns in the data provides a reasonable basis for future forecasts. Using the ARIMA model, a 24-month ahead forecast was generated, projecting retail sales into 2026. The **dark line** represents the point estimates for future sales, while the **shaded areas** represent the 80% and 95% confidence intervals. These intervals show the range within which future sales are expected to fall, with a higher probability (95%) that the actual values will lie within the broader, lighter blue area and an 80% probability within the darker shaded area.
+
 
 ![ARIMA 24-Month Forecast](images/Forecast_from_ARIMA(1,1,0)(1,1,2)[12].png)
 
