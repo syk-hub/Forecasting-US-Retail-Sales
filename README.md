@@ -8,33 +8,6 @@ In this project, we applied various time series forecasting models to US monthly
 
 Through this analysis, we demonstrate the value of using advanced forecasting methods, such as ARIMA and ETS, to capture complex economic trends. This project not only provides insights into forecasting retail sales but also highlights the power of long-term economic stability.
 
-## Key Models
-
-To forecast retail sales, we tested three different time series models, each offering unique strengths in capturing patterns and trends in the data:
-
-1. **Seasonal Naive Model (SNaive)**: Provides a simple benchmark for comparison by assuming that future values will repeat past seasonal patterns without accounting for trends or fluctuations.
-
-![SNaive Residual](images/Residuals_from_Seasonal_naive_method.png)
-
-The Seasonal Naive model, with a high RMSE of 12054.12 and significant residual autocorrelation, indicates poor predictive accuracy. While simple to implement, the model fails to capture trends or changes in the underlying data, making it unsuitable for accurate forecasting. Its performance serves as a baseline for comparison, but the high errors and autocorrelation suggest it is inadequate for complex time series like retail sales.
-
-2. **ETS Model**: Captures both trend and seasonal components effectively, making it suitable for data that exhibits consistent seasonality and growth or decline over time.
-
-![ETS Residual](images/Residuals_from_ETS(M,A,N).png) 
-
-The ETS model (ETS(M,A,N)) shows a considerable improvement over the SNaive model, with a lower RMSE of 7902.22 and a lower degree of residual autocorrelation, though some remains. The model effectively captures trends in the data through its smoothing parameters, but the significant p-value from the Ljung-Box test suggests that the model could still improve in accounting for some patterns. Overall, this model balances simplicity and predictive power, but it may underperform in the presence of unexpected fluctuations.
-
-3. **ARIMA Model**: A more flexible model that captures both short-term and long-term dependencies in the data, particularly suited for predicting long-term retail sales, especially in the post-pandemic period.
-
-![ARIMA Residual](images/Residuals_from_ARIMA(1,1,0)(1,1,2)[12].png)
-
-The ARIMA(1,1,0)(1,1,2)[12] model demonstrates the best fit, with the lowest RMSE of 7746.13 and minimal residual autocorrelation, making it the most robust for forecasting retail sales. It effectively handles both trend and seasonal variations, although the Ljung-Box test still shows some remaining autocorrelation. Given its flexibility and ability to capture complex data patterns, the ARIMA model is the most reliable choice for this dataset.
-
-## Key Results
-- The ARIMA model performed the best, demonstrating how retail sales trends returned to predicted values after the COVID-19 disturbances.
-- ETS offered a reasonable performance but exhibited some residual autocorrelation.
-- The SNaive model served as a useful baseline, but it lacked the sophistication to handle complex patterns in the data.
-
 ## Data
 The retail sales data used in this analysis comes from the **FRED Advanced Retail Sales dataset**, spanning from 1992 to 2024. The raw data has been adjusted for inflation using the **CPI Index** from the **Bureau of Labor Statistics** to represent figures in **2024 million US dollars**. This adjustment ensures the values are consistent in real terms over time.
 
@@ -62,6 +35,36 @@ The `ggseasonplot()` visualizes the seasonal changes in retail sales across mult
 The `ggsubseriesplot()` further highlights the monthly breakdown, showing how sales behave during specific months across different years, reinforcing the presence of persistent seasonality.
 ![Subseries Plot](images/Subseries_Plot.png)
 
+## Key Models
+
+To forecast retail sales, we tested three different time series models, each offering unique strengths in capturing patterns and trends in the data:
+
+1. **Seasonal Naive Model (SNaive)**: Provides a simple benchmark for comparison by assuming that future values will repeat past seasonal patterns without accounting for trends or fluctuations.
+
+![SNaive Residual](images/Residuals_from_Seasonal_naive_method.png)
+
+The Seasonal Naive model, with a high RMSE of 12054.12 and significant residual autocorrelation, indicates poor predictive accuracy. While simple to implement, the model fails to capture trends or changes in the underlying data, making it unsuitable for accurate forecasting. Its performance serves as a baseline for comparison, but the high errors and autocorrelation suggest it is inadequate for complex time series like retail sales.
+
+2. **ETS Model**: Captures both trend and seasonal components effectively, making it suitable for data that exhibits consistent seasonality and growth or decline over time.
+
+![ETS Residual](images/Residuals_from_ETS(M,A,N).png) 
+
+The ETS model (ETS(M,A,N)) shows a considerable improvement over the SNaive model, with a lower RMSE of 7902.22 and a lower degree of residual autocorrelation, though some remains. The model effectively captures trends in the data through its smoothing parameters, but the significant p-value from the Ljung-Box test suggests that the model could still improve in accounting for some patterns. Overall, this model balances simplicity and predictive power, but it may underperform in the presence of unexpected fluctuations.
+
+3. **ARIMA Model**: A more flexible model that captures both short-term and long-term dependencies in the data, particularly suited for predicting long-term retail sales, especially in the post-pandemic period.
+
+![ARIMA Residual](images/Residuals_from_ARIMA(1,1,0)(1,1,2)[12].png)
+
+The ARIMA(1,1,0)(1,1,2)[12] model demonstrates the best fit, with the lowest RMSE of 7746.13 and minimal residual autocorrelation, making it the most robust for forecasting retail sales. It effectively handles both trend and seasonal variations, although the Ljung-Box test still shows some remaining autocorrelation. Given its flexibility and ability to capture complex data patterns, the ARIMA model is the most reliable choice for this dataset.
+
+## Key Results
+- The ARIMA model performed the best, demonstrating how retail sales trends returned to predicted values after the COVID-19 disturbances.
+- ETS offered a reasonable performance but exhibited some residual autocorrelation.
+- The SNaive model served as a useful baseline, but it lacked the sophistication to handle complex patterns in the data.
+
+## Conclusion
+This project demonstrates the resilience of long-term retail sales trends, even in the face of significant economic disruptions. For more details, please explore the full analysis in the R Markdown file.
+
 ## Instructions
 1. Clone the repository.
 2. Install the required R packages: `fpp2`, `ggplot2`, `forecast`.
@@ -79,6 +82,5 @@ For a detailed breakdown of the analysis, refer to the [R Markdown file](`sales_
 - **Residual Diagnostics**: Shows how well the ARIMA model fits the data through residuals analysis.
   ![Residuals Check](link-to-image)
 
-## Conclusion
-This project demonstrates the resilience of long-term retail sales trends, even in the face of significant economic disruptions. For more details, please explore the full analysis in the R Markdown file.
+
 
