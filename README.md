@@ -59,9 +59,13 @@ The ETS model (ETS(M,A,N)) shows a considerable improvement over the SNaive mode
 The ARIMA(1,1,0)(1,1,2)[12] model demonstrates the best fit, with the lowest RMSE of 7746.13 and minimal residual autocorrelation, making it the most robust for forecasting retail sales. It effectively handles both trend and seasonal variations, although the Ljung-Box test still shows some remaining autocorrelation. Given its flexibility and ability to capture complex data patterns, the ARIMA model is the most reliable choice for this dataset.
 
 ## Key Results
-- The ARIMA model performed the best, demonstrating how retail sales trends returned to predicted values after the COVID-19 disturbances.
-- ETS offered a reasonable performance but exhibited some residual autocorrelation.
-- The SNaive model served as a useful baseline, but it lacked the sophistication to handle complex patterns in the data.
+
+Model Evaluation
+
+- SNaive Model: Serves as a benchmark but lacks sophistication. It’s easy to implement but doesn’t adapt to trends or seasonality as well as the other methods.
+- ETS Model: Performs better, adjusting for seasonality and trend. It has the lowest residual standard deviation, meaning it fits the data well in terms of in-sample error, but its out-of-sample predictive power is limited.
+- ARIMA Model: Despite having a slightly higher residual standard deviation than ETS, ARIMA performs best for predictive accuracy. It captures more complex patterns, including seasonality and autocorrelation, making it the strongest model for forecasting future values.
+
 
 ## Conclusion
 This project demonstrates the resilience of long-term retail sales trends, even in the face of significant economic disruptions. For more details, please explore the full analysis in the R Markdown file.
