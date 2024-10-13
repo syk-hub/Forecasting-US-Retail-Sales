@@ -13,8 +13,13 @@ Through this analysis, we demonstrate the value of using advanced forecasting me
 To forecast retail sales, we tested three different time series models, each offering unique strengths in capturing patterns and trends in the data:
 
 1. **Seasonal Naive Model (SNaive)**: Provides a simple benchmark for comparison by assuming that future values will repeat past seasonal patterns without accounting for trends or fluctuations.
-2. **ETS Model**: Captures both trend and seasonal components effectively, making it suitable for data that exhibits consistent seasonality and growth or decline over time.
-3. **ARIMA Model**: A more flexible model that captures both short-term and long-term dependencies in the data, particularly suited for predicting long-term retail sales, especially in the post-pandemic period.
+
+![SNaive Residual](images/Residuals_from_Seasonal_naive_method.png)
+
+The Seasonal Naive model, with a high RMSE of 12054.12 and significant residual autocorrelation, indicates poor predictive accuracy. While simple to implement, the model fails to capture trends or changes in the underlying data, making it unsuitable for accurate forecasting. Its performance serves as a baseline for comparison, but the high errors and autocorrelation suggest it is inadequate for complex time series like retail sales.
+
+3. **ETS Model**: Captures both trend and seasonal components effectively, making it suitable for data that exhibits consistent seasonality and growth or decline over time.
+4. **ARIMA Model**: A more flexible model that captures both short-term and long-term dependencies in the data, particularly suited for predicting long-term retail sales, especially in the post-pandemic period.
 
 
 ## Key Results
@@ -42,6 +47,7 @@ In the preprocessing step, seasonality in the retail sales data was examined. Bo
 
 ### Seasonal Plot:
 The `ggseasonplot()` visualizes the seasonal changes in retail sales across multiple years, clearly indicating consistent peaks and troughs in certain months.
+
 ![Seasonal Plot](images/Seasonal_Plot_Change_in_Retail_Sales.png)
 
 ### Subseries Plot:
