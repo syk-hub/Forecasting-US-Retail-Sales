@@ -27,6 +27,28 @@ The retail sales data used in this analysis comes from the **FRED Advanced Retai
 
 The dataset is stored in the `data` directory of this  repository and can be downloaded [here](data/retail_sales.csv).
 
+## Data
+The retail sales data, adjusted for inflation, covers the period from 1992 to 2024. Below is a visualization of the adjusted real retail sales, showing the general trend over time.
+
+![Adjusted Real Retail Sales](images/real_retail_sales.png)
+
+## Preprocessing
+To make the data stationary, a first difference was applied to the real retail sales data. This transformation removes the long-term trend, allowing the models to focus on short-term fluctuations. The de-trended data is shown below:
+
+![De-trended Retail Sales (First Difference)](images/detrended_retail_sales.png)
+
+## Seasonal Patterns
+
+In the preprocessing step, seasonality in the retail sales data was examined. Both the `ggseasonplot()` and `ggsubseriesplot()` functions were used to identify persistent seasonal patterns in the data, as shown in the following plots. Given the strong seasonal behavior, no attempts were made to remove seasonality, as it plays a key role in retail sales forecasting.
+
+### Seasonal Plot:
+The `ggseasonplot()` visualizes the seasonal changes in retail sales across multiple years, clearly indicating consistent peaks and troughs in certain months.
+![Seasonal Plot](images/seasonal_plot.png)
+
+### Subseries Plot:
+The `ggsubseriesplot()` further highlights the monthly breakdown, showing how sales behave during specific months across different years, reinforcing the presence of persistent seasonality.
+![Subseries Plot](images/subseries_plot.png)
+
 ## Instructions
 1. Clone the repository.
 2. Install the required R packages: `fpp2`, `ggplot2`, `forecast`.
