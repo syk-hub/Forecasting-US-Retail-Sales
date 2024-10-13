@@ -9,9 +9,13 @@ In this project, we applied various time series forecasting models to US monthly
 Through this analysis, we demonstrate the value of using advanced forecasting methods, such as ARIMA and ETS, to capture complex economic trends. This project not only provides insights into forecasting retail sales but also highlights the power of long-term economic stability.
 
 ## Key Models
-1. **Seasonal Naive Model (SNaive)**: Provides a simple benchmark for comparison.
-2. **ETS Model**: Captures both trend and seasonal components effectively.
-3. **ARIMA Model**: The most accurate model in predicting long-term retail sales, particularly post-pandemic.
+
+To forecast retail sales, we tested three different time series models, each offering unique strengths in capturing patterns and trends in the data:
+
+1. **Seasonal Naive Model (SNaive)**: Provides a simple benchmark for comparison by assuming that future values will repeat past seasonal patterns without accounting for trends or fluctuations.
+2. **ETS Model**: Captures both trend and seasonal components effectively, making it suitable for data that exhibits consistent seasonality and growth or decline over time.
+3. **ARIMA Model**: A more flexible model that captures both short-term and long-term dependencies in the data, particularly suited for predicting long-term retail sales, especially in the post-pandemic period.
+
 
 ## Key Results
 - The ARIMA model performed the best, demonstrating how retail sales trends returned to predicted values after the COVID-19 disturbances.
@@ -21,7 +25,7 @@ Through this analysis, we demonstrate the value of using advanced forecasting me
 ## Data
 The retail sales data used in this analysis comes from the **FRED Advanced Retail Sales dataset**, spanning from 1992 to 2024. The raw data has been adjusted for inflation using the **CPI Index** from the **Bureau of Labor Statistics** to represent figures in **2024 million US dollars**. This adjustment ensures the values are consistent in real terms over time.
 
-The dataset is stored in the `data` directory of this  repositoryand can be downloaded [here](data/retail_sales.csv).
+The dataset is stored in the `data` directory of this  repository and can be downloaded [here](data/retail_sales.csv).
 
 ## Instructions
 1. Clone the repository.
