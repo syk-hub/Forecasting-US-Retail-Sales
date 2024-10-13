@@ -86,7 +86,7 @@ To assess the predictive power of the ARIMA model, the dataset was split into tr
 
 The results indicate that the ARIMA model accurately predicted retail sales, particularly in the years following the COVID-19 disruption. Below is a zoomed-in graph showing how well the forecasted values aligned with the actual data over the last 5 years.
 
-![ARIMA Test Data Forecast](images/Forecast_vs_Actual_on_Test_Data_(Last_5_Years).png)
+![ARIMA Test Data Forecast](images/Forecast_vs_Actual_on_Test_Data_Last_5_Years.png)
 
 
 ## Conclusion
