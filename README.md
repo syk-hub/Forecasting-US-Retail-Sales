@@ -102,7 +102,7 @@ Notably, once the disruption subsided, the actual data realigned with the foreca
 1. Clone the repository.
 2. Install the required R packages: `fpp2`, `ggplot2`, `forecast`.
 3. Run the analysis in the R Markdown file `sales_forecasting_analysis_fpp2.Rmd`.
-4. For full details, refer to the [R Markdown file](sales_forecasting_analysis_fpp2.Rmd)
+4. For full details, refer to the [R Markdown file](sales_forecasting_analysis_fpp2.Rmd).
 
 
 
