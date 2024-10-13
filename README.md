@@ -19,7 +19,9 @@ Through this analysis, we demonstrate the value of using advanced forecasting me
 - The SNaive model served as a useful baseline, but it lacked the sophistication to handle complex patterns in the data.
 
 ## Data
-The retail sales data is stored in the `data/` directory of this repository as `retail_sales.csv`. The data was sourced from [data source link] and processed for time series analysis.
+The retail sales data used in this analysis comes from the **FRED Advanced Retail Sales dataset**, spanning from 1992 to 2024. The raw data has been adjusted for inflation using the **CPI Index** from the **Bureau of Labor Statistics** to represent figures in **2024 million US dollars**. This adjustment ensures the values are consistent in real terms over time.
+
+The dataset is stored in the `data` directory of this  repositoryand can be downloaded [here](data/retail_sales.csv).
 
 ## Instructions
 1. Clone the repository.
