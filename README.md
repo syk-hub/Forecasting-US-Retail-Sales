@@ -74,16 +74,14 @@ Despite these uncertainties, the ARIMA model's ability to capture complex patter
 
 ![ARIMA 24-Month Forecast](images/Forecast_from_ARIMA(1,1,0)(1,1,2)[12].png)
 
-### Forecast Accuracy
-The ARIMA model's forecast closely aligned with actual retail sales data, particularly during the period following COVID-19. This demonstrates the model's ability to predict long-term trends despite short-term economic disturbances.
-
-![ARIMA Forecast](images/Forecast_vs_Actual_on_Test_Data.png)
-
-### Training and Test Analysis
+## Training and Test Analysis
 To assess the predictive power of the ARIMA model, the dataset was split into training and testing sets. The model was trained on the first part of the data and tested on the remaining portion to evaluate its out-of-sample forecast accuracy.
 
 - **Training set**: Used for fitting the model.
 - **Test set**: Used for evaluating the model's performance on unseen data.
+
+### Forecast Accuracy
+The ARIMA model's forecast closely aligned with actual retail sales data, particularly during the period following COVID-19. This demonstrates the model's ability to predict long-term trends despite short-term economic disturbances.
 
 The results indicate that the ARIMA model accurately predicted retail sales, particularly in the years following the COVID-19 disruption. Below is a zoomed-in graph showing how well the forecasted values aligned with the actual data over the last 5 years.
 
