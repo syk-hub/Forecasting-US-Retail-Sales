@@ -28,6 +28,8 @@ The ETS model (ETS(M,A,N)) shows a considerable improvement over the SNaive mode
 
 ![ARIMA Residual](images/Residuals_from_ARIMA(1,1,0)(1,1,2)[12].png)
 
+The ARIMA(1,1,0)(1,1,2)[12] model demonstrates the best fit, with the lowest RMSE of 7746.13 and minimal residual autocorrelation, making it the most robust for forecasting retail sales. It effectively handles both trend and seasonal variations, although the Ljung-Box test still shows some remaining autocorrelation. Given its flexibility and ability to capture complex data patterns, the ARIMA model is the most reliable choice for this dataset.
+
 ## Key Results
 - The ARIMA model performed the best, demonstrating how retail sales trends returned to predicted values after the COVID-19 disturbances.
 - ETS offered a reasonable performance but exhibited some residual autocorrelation.
