@@ -1,0 +1,257 @@
+---
+title: "sales_forecasting_analysis_fpp2.Rmd"
+author: "So Young Kim"
+date: "2024-10-09"
+output: html_document
+---
+
+```{r setup3, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+# Introduction
+
+This analysis aims to forecast US monthly retail sales (inflation-adjusted) from 1992 to 2024, using time series forecasting models. Time series forecasting allows us to model patterns in historical data and use these patterns to make predictions about future sales.
+
+In this document, we will:
+
+1. **Pre-process the Data:** Clean and declare the data as a time series object.
+ 
+2. **Explore the Data:** Conduct preliminary analysis to examine any trends and seasonality in retail sales.
+
+3. **Build Forecasting Models:** Test three forecasting models:
+
+  * Seasonal Naive (SNaive)
+  * Exponential Smoothing (ETS)
+  * ARIMA
+
+4. **Evaluate Models:** Compare the models and determine which provides the most accurate forecast.
+
+5. **Train-Test Split:** Partition the data into training and testing sets to assess the out-of-sample performance of the models.
+
+6. **Forecast Future Sales:** Using the best-performing model (ARIMA), we will forecast future sales and assess the results, especially in light of the COVID-19 period.
+
+```{r}
+options(repos = "https://cran.rstudio.com/")
+
+```
+
+### Clear Workspace
+```{r}
+rm(list = ls())
+```
+
+### Load Necessary Packages
+
+We use the fpp2 package, which provides advanced tools for time series forecasting, including ARIMA and exponential smoothing methods. It helps in evaluating the accuracy of models and provides visualization tools.
+
+```{r setup2, include=FALSE}
+install.packages("fpp2")
+library(fpp2)
+```
+The `fpp2` package stands for "Forecasting: Principles and Practice (2nd Edition)". It provides data and functions for forecasting, time series analysis, and visualization, widely used for practical forecasting using models like ARIMA and ETS.
+
+### Load and Declare Time Series data
+
+```{r}
+data<-read.csv("Real_Retail_Sales.csv")
+Y <- ts(data[,2], start=c(1992,1), frequency = 12)
+```
+
+# Preliminary Analysis
+
+We begin by plotting the time series to inspect any visible patterns in the retail sales data.
+```{r}
+autoplot(Y) +
+  ggtitle("Time Plot: Real US Retail Sales") +
+  xlab("Year") +
+  ylab("Millions of 2024 Dollars")
+```
+
+As seen in the plot, there is a clear upward trend in sales over the years. However, we need to check for seasonality and other patterns, which will help inform our forecasting methods.
+
+# Differencing the Data
+
+Since there is a clear upward trend, we apply differencing to remove the trend and stabilize the data. Differencing is essential because it transforms a non-stationary time series into a stationary one, which is necessary for many forecasting methods.
+ 
+```{r}
+DY <- diff(Y)
+```
+
+```{r}
+autoplot(DY) +
+  ggtitle("Time Plot: Change in Real US Retail Sales") +
+  xlab("Year") +
+  ylab("Millions of 2024 Dollars")
+```
+
+As seen in the differenced plot, the upward trend is removed, and the data now oscillates around zero, making it more appropriate for modeling.
+
+# Testing for Seasonality
+
+Next, we need to assess whether seasonality is present in the data, as this will guide the choice of models. We use the seasonal subseries plot, which helps us visualize the seasonality within each month across years.
+
+```{r}
+ggseasonplot(DY) +
+  ggtitle("Seaonal Plot: Change in Retail Sales") +
+  xlab("Year") +
+  ylab("Millions of 2024 Dollars")
+```
+
+The `ggseasonplot(DY)` function creates a seasonal plot for the differenced retail sales data (`DY`). This plot helps visualize seasonal patterns by displaying the changes in retail sales across different years. Each line represents a year, making it easy to identify recurring seasonal trends and fluctuations in the data.
+
+The seasonal plot reveals clear, recurring patterns in retail sales, with consistent peaks and troughs across years, indicating strong seasonality. However, some years show larger fluctuations, likely due to external factors such as economic changes or disruptions.
+
+
+# Looking at another seasonal plot, the subseries plot
+
+```{r}
+ggsubseriesplot(DY)
+```
+
+From the plot, we can observe the monthly patterns and note that certain months (March, April, June, October) exhibit higher fluctuations. This indicates the presence of seasonal variation, which must be accounted for in our models
+
+# Forecasting Models
+
+We will now test three forecasting models:
+
+1. Seasonal Naive (SNaive): A simple benchmark model that assumes future values are the same as the previous year's corresponding month.
+2. Exponential Smoothing (ETS): A more advanced method that adjusts based on trends and seasonality.
+3. ARIMA: An autoregressive integrated moving average model that combines differencing, autoregression, and moving averages to capture trends, seasonality, and autocorrelation in the data.
+
+### Model 1: Seasonal Naive (SNaive)
+
+```{r, echo=FALSE, results="hide"}
+fit <- snaive(DY)  
+print(summary(fit))
+checkresiduals(fit) 
+```
+ 
+The Seasonal Naive model, with a high RMSE of 12054.12 and significant residual autocorrelation, indicates poor predictive accuracy. While simple to implement, the model fails to capture trends or changes in the underlying data, making it unsuitable for accurate forecasting. Its performance serves as a baseline for comparison, but the high errors and autocorrelation suggest it is inadequate for complex time series like retail sales.
+
+### Model 2: Exponential Smoothing (ETS)
+
+```{r}
+fit_ets <- ets(Y) #Residual SD 0.0154
+print(summary(fit_ets))
+checkresiduals(fit_ets) 
+```
+
+The ETS model (ETS(M,A,N)) shows a considerable improvement over the SNaive model, with a lower RMSE of 7902.22 and a lower degree of residual autocorrelation, though some remains. The model effectively captures trends in the data through its smoothing parameters, but the significant p-value from the Ljung-Box test suggests that the model could still improve in accounting for some patterns. Overall, this model balances simplicity and predictive power, but it may underperform in the presence of unexpected fluctuations.
+
+### Model 3: ARIMA
+
+```{r, echo=FALSE, results="hide"}
+fit_arima <- auto.arima(Y, d=1, D=1, stepwise = FALSE, approximation = FALSE, trace = TRUE)
+print(summary(fit_arima))
+checkresiduals(fit_arima) #Residual SD 7,920.4
+```
+
+The ARIMA(1,1,0)(1,1,2)[12] model demonstrates the best fit, with the lowest RMSE of 7746.13 and minimal residual autocorrelation, making it the most robust for forecasting retail sales. It effectively handles both trend and seasonal variations, although the Ljung-Box test still shows some remaining autocorrelation. Given its flexibility and ability to capture complex data patterns, the ARIMA model is the most reliable choice for this dataset.
+
+
+### Model Evaluation
+
+The SNaive model serves as a benchmark but lacks sophistication. While it’s easy to implement, it doesn't adapt to trends or seasonality as well as other methods.
+
+The ETS model performs better, adjusting for seasonality and trend. Interestingly, it has the lowest residual standard deviation, meaning it fits the data well in terms of in-sample error. However, its out-of-sample predictive power is still limited.
+
+The ARIMA model, despite having a slightly higher residual standard deviation than ETS, performs best for predictive accuracy. ARIMA captures more complex patterns and handles both seasonality and autocorrelation, making it the strongest model for forecasting future values.
+
+# Forecast with ARIMA 
+
+Based on the results, we proceed with the ARIMA model to forecast the next two years of retail sales.
+
+```{r}
+fcst <- forecast(fit_arima, h=24)
+autoplot(fcst) +
+  xlab("Year") +
+  ylab("Millions of 2024 Dollars")
+
+```
+
+The ARIMA model forecasts retail sales over the next 24 months. The plot shows how the forecast aligns closely with actual data, especially after the disruptions caused by the COVID-19 pandemic. This period introduced significant volatility, leading to discrepancies between actual and predicted values. However, by 2024, the model's forecast converges with the actual sales, indicating that the market has normalized, and the ARIMA model can reliably predict future values.
+
+# Train-Test Split
+
+To further evaluate the model’s performance, we partition the data into a training set (80%) and a testing set (20%) to see how well the model predicts unseen data.
+
+```{r}
+train_size <- round(length(Y) * 0.8)  # 80% of the data for training
+```
+
+### Calculate the time for the training set's end point
+
+```{r}
+train <- window(Y, end = time(Y)[train_size])  # training set
+```
+
+### Testing set starts right after the training set ends
+
+```{r}
+test <- window(Y, start = time(Y)[train_size + 1])  # testing set
+```
+
+```{r}
+fit_arima_train <- auto.arima(train)
+fcst_train <- forecast(fit_arima_train, h=length(test))
+accuracy(fcst_train, test)
+
+```
+
+```{r}
+autoplot(fcst_train) +
+  autolayer(test, series="Test Data") +
+  ggtitle("Forecast vs Actual on Test Data") +
+  xlab("Year") +
+  ylab("Millions of 2024 Dollars")
+```
+
+From the results of the train-test split, the model struggled during the COVID-19 period due to the extreme disruption, but it recovered well by 2024, where actual and forecasted values closely align. This shows that ARIMA is a robust model for long-term forecasting once the market stabilizes after a period of volatility.
+
+# Zoom in to the last 5 years of the data
+
+In this final part of the analysis, we focus on the last 5 years of both the forecasted and actual retail sales data. Zooming in on the most recent period allows us to closely evaluate how well the model's forecasts align with the actual test data over time, especially in the context of any recent economic events that may have impacted retail sales.
+
+```{r}
+test_length <- 60  # Last 60 months for 5 years
+
+```
+
+We define a time window for the final 60 months, which represents the last 5 years of the monthly retail sales data. This helps isolate the recent past to focus on model performance during this period.
+
+```{r}
+forecasted_data_last_5_years <- window(fcst_train$mean, start = tail(time(fcst_train$mean), test_length)[1])
+test_data_last_5_years <- window(test, start = tail(time(test), test_length)[1])
+```
+
+Here, we use the window() function to subset both the forecasted and actual values, focusing on the last 5 years:
+
+* forecasted_data_last_5_years extracts the forecasted retail sales for the last 60 months from the model.
+* test_data_last_5_years extracts the actual retail sales values for the same time frame. This will allow a direct comparison of forecast accuracy.
+
+```{r}
+autoplot(forecasted_data_last_5_years, series = "Forecasted") +
+  autolayer(test_data_last_5_years, series = "Actual Data") +
+  ggtitle("Forecast vs Actual on Test Data (Last 5 Years)") +
+  xlab("Year") +
+  ylab("Millions of 2024 Dollars") +
+  guides(colour = guide_legend(title = "Legend")) +
+  theme_minimal()
+```
+
+This plot provides a clear comparison of forecasted vs. actual retail sales data for the last 5 years:
+
+* autoplot(forecasted_data_last_5_years): Plots the forecasted values from the model for the selected period.
+
+* autolayer(test_data_last_5_years): Overlays the actual sales data on the same plot to compare how well the forecast matches the real data.
+
+* The plot title and axis labels help in interpreting the graph, while the color legend makes it easy to differentiate between forecasted and actual values.
+  
+# Final Thoughts
+  
+The ARIMA model's performance over the past 5 years demonstrates its capacity to predict retail sales trends effectively, particularly in periods of relative economic stability. However, during periods of significant economic disruption, such as the COVID-19 pandemic, we observe notable discrepancies between the forecasted and actual values. The pandemic led to unprecedented shifts in consumer behavior, supply chain disruptions, and government interventions, causing a temporary divergence between the actual retail sales and the forecast.
+
+What’s particularly noteworthy is how, after the peak of the disruption, the actual data realigns with the forecasted trend. This suggests that while the ARIMA model did not account for the sudden, unpredictable nature of the pandemic, the broader economic trends returned to their expected patterns once the extreme volatility subsided. As the economy adjusted, retail sales began to normalize, aligning closely with the forecasted values from the ARIMA model, demonstrating the model’s strength in capturing long-term trends even when short-term shocks occur. This reversion to forecasted patterns highlights the resilience of underlying economic structures and suggests that, in the absence of continued disruptions, long-term forecasts remain reliable.
+
+In conclusion, the ARIMA model provides valuable insights for long-term forecasting, with temporary discrepancies caused by external shocks like COVID-19 being followed by a recovery back to predictable trends.
