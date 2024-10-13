@@ -34,7 +34,7 @@ The retail sales data, adjusted for inflation, covers the period from 1992 to 20
 ## Preprocessing
 To make the data stationary, a first difference was applied to the real retail sales data. This transformation removes the long-term trend, allowing the models to focus on short-term fluctuations. The de-trended data is shown below:
 
-![De-trended Retail Sales (First Difference)](images/Change_in Real_US_Retail_Sales.png)
+![De-trended Retail Sales (First Difference)](images/Change_in_Real_US_Retail_Sales.png)
 
 ## Seasonal Patterns
 
@@ -42,11 +42,11 @@ In the preprocessing step, seasonality in the retail sales data was examined. Bo
 
 ### Seasonal Plot:
 The `ggseasonplot()` visualizes the seasonal changes in retail sales across multiple years, clearly indicating consistent peaks and troughs in certain months.
-![Seasonal Plot](images/seasonal_plot.png)
+![Seasonal Plot](images/Seasonal_Plot_Change_in_Retail_Sales.png)
 
 ### Subseries Plot:
 The `ggsubseriesplot()` further highlights the monthly breakdown, showing how sales behave during specific months across different years, reinforcing the presence of persistent seasonality.
-![Subseries Plot](images/subseries_plot.png)
+![Subseries Plot](images/Subseries_Plot.png)
 
 ## Instructions
 1. Clone the repository.
