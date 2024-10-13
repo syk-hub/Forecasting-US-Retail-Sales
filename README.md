@@ -60,11 +60,33 @@ The ARIMA(1,1,0)(1,1,2)[12] model demonstrates the best fit, with the lowest RMS
 
 ## Key Results
 
-Model Evaluation
+### Model Evaluation
 
-- SNaive Model: Serves as a benchmark but lacks sophistication. It’s easy to implement but doesn’t adapt to trends or seasonality as well as the other methods.
-- ETS Model: Performs better, adjusting for seasonality and trend. It has the lowest residual standard deviation, meaning it fits the data well in terms of in-sample error, but its out-of-sample predictive power is limited.
-- ARIMA Model: Despite having a slightly higher residual standard deviation than ETS, ARIMA performs best for predictive accuracy. It captures more complex patterns, including seasonality and autocorrelation, making it the strongest model for forecasting future values.
+- **SNaive Model**: Serves as a benchmark but lacks sophistication. It’s easy to implement but doesn’t adapt to trends or seasonality as well as the other methods.
+- **ETS Model**: Performs better, adjusting for seasonality and trend. It has the lowest residual standard deviation, meaning it fits the data well in terms of in-sample error, but its out-of-sample predictive power is limited.
+- **ARIMA Model**: Despite having a slightly higher residual standard deviation than ETS, ARIMA performs best for predictive accuracy. It captures more complex patterns, including seasonality and autocorrelation, making it the strongest model for forecasting future values.
+
+### 24-Month Ahead Forecast
+Using the ARIMA model, a 24-month ahead forecast was generated to predict retail sales into 2026. This projection assumes that the underlying patterns (trends, seasonality, and autocorrelation) observed in the past will continue into the future. While the model captures historical patterns effectively, it’s important to note that future economic conditions, such as policy changes or unexpected events, may affect the actual outcomes.
+
+Despite these uncertainties, the ARIMA model's ability to capture complex patterns in the data provides a reasonable basis for future forecasts. Below is the graph showing the 24-month forecast:
+
+![ARIMA 24-Month Forecast](images/arima_24_month_forecast.png)
+
+### Forecast Accuracy
+The ARIMA model's forecast closely aligned with actual retail sales data, particularly during the period following COVID-19. This demonstrates the model's ability to predict long-term trends despite short-term economic disturbances.
+
+![ARIMA Forecast](images/arima_forecast.png)
+
+### Training and Test Analysis
+To assess the predictive power of the ARIMA model, the dataset was split into training and testing sets. The model was trained on the first part of the data and tested on the remaining portion to evaluate its out-of-sample forecast accuracy.
+
+- **Training set**: Used for fitting the model.
+- **Test set**: Used for evaluating the model's performance on unseen data.
+
+The results indicate that the ARIMA model accurately predicted retail sales, particularly in the years following the COVID-19 disruption. Below is a zoomed-in graph showing how well the forecasted values aligned with the actual data over the last 5 years.
+
+![ARIMA Test Data Forecast](images/arima_test_data_forecast.png)
 
 
 ## Conclusion
