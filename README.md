@@ -27,15 +27,14 @@ The retail sales data used in this analysis comes from the **FRED Advanced Retai
 
 The dataset is stored in the `data` directory of this  repository and can be downloaded [here](data/retail_sales.csv).
 
-## Data
 The retail sales data, adjusted for inflation, covers the period from 1992 to 2024. Below is a visualization of the adjusted real retail sales, showing the general trend over time.
 
-![Adjusted Real Retail Sales](images/real_retail_sales.png)
+![Adjusted Real Retail Sales](images/Real_US_Retail_Sales.png)
 
 ## Preprocessing
 To make the data stationary, a first difference was applied to the real retail sales data. This transformation removes the long-term trend, allowing the models to focus on short-term fluctuations. The de-trended data is shown below:
 
-![De-trended Retail Sales (First Difference)](images/detrended_retail_sales.png)
+![De-trended Retail Sales (First Difference)](images/Change_in Real_US_Retail_Sales.png)
 
 ## Seasonal Patterns
 
