@@ -37,7 +37,8 @@ The `ggsubseriesplot()` further highlights the monthly breakdown, showing how sa
 
 ## Key Models
 
-To forecast retail sales, we tested three different time series models, each offering unique strengths in capturing patterns and trends in the data:
+To forecast retail sales, we tested three different time series models, each offering unique For full numerical outputs, including error metrics and diagnostic tests, please refer to the [R Markdown file](sales_forecasting_analysis_fpp2.Rmd) in the repository.
+
 
 1. **Seasonal Naive Model (SNaive)**: Provides a simple benchmark for comparison by assuming that future values will repeat past seasonal patterns without accounting for trends or fluctuations.
 
