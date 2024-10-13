@@ -26,7 +26,7 @@ The retail sales data is stored in the `data/` directory of this repository as `
 2. Install the required R packages: `fpp2`, `ggplot2`, `forecast`.
 3. Run the analysis in the R Markdown file `sales_forecasting_analysis_fpp2.Rmd`.
 
-For a detailed breakdown of the analysis, refer to the R Markdown file (`sales_forecasting_analysis_fpp2.Rmd`), which contains the full code, explanations, and insights into the models used.
+For a detailed breakdown of the analysis, refer to the [R Markdown file] (`sales_forecasting_analysis_fpp2.Rmd`), which contains the full code, explanations, and insights into the models used.
 
 ## Visualizations
 - **Seasonal Plot**: Shows recurring seasonal trends in retail sales.
