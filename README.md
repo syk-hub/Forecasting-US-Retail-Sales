@@ -1,4 +1,4 @@
-# Retail Sales Forecasting
+# Forecasting U.S. Retail Sales: A Comparative Analysis of Time Series Models
 
 ## Project Overview
 
