@@ -91,7 +91,12 @@ The results indicate that the ARIMA model accurately predicted retail sales, par
 
 
 ## Conclusion
-This project demonstrates the resilience of long-term retail sales trends, even in the face of significant economic disruptions. For more details, please explore the full analysis in the R Markdown file.
+
+The ARIMA model effectively predicts retail sales trends during periods of economic stability, though discrepancies arise during significant disruptions, such as the COVID-19 pandemic. The pandemic led to shifts in consumer behavior and supply chain issues, causing a temporary divergence between forecasted and actual sales.
+
+Notably, once the disruption subsided, the actual data realigned with the forecasted trend, demonstrating the model's strength in capturing long-term patterns. This suggests that while ARIMA may not account for sudden, unpredictable events, broader economic trends tend to return to expected paths, affirming the model’s reliability for long-term forecasting.
+
+
 
 ## Instructions
 1. Clone the repository.
